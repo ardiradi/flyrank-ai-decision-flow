@@ -1,0 +1,305 @@
+{
+  "verifiedAt": "2026-10-08T06:36:12.992Z",
+  "mode": "demo",
+  "openaiCallsMade": false,
+  "status": {
+    "ok": true,
+    "openaiConfigured": false,
+    "model": "gpt-4.1-mini",
+    "inngestReady": true,
+    "demoNotice": "Demo decisions use each node's configured YES/NO answer; no LLM is called."
+  },
+  "runs": [
+    {
+      "id": "501b3e19-ae09-4e46-b4f9-6e1d50462d40",
+      "graph": {
+        "version": 1,
+        "name": "Support request triage",
+        "entryNodeId": "urgency",
+        "nodes": [
+          {
+            "id": "urgency",
+            "type": "decision",
+            "position": {
+              "x": 360,
+              "y": 40
+            },
+            "data": {
+              "title": "Is this urgent?",
+              "prompt": "Does the support request describe a service outage, payment failure, or a serious blocker?",
+              "demoDecision": "YES"
+            }
+          },
+          {
+            "id": "specialist",
+            "type": "decision",
+            "position": {
+              "x": 140,
+              "y": 300
+            },
+            "data": {
+              "title": "Needs a specialist?",
+              "prompt": "Does the request require engineering expertise, rather than a standard support response?",
+              "demoDecision": "YES"
+            }
+          },
+          {
+            "id": "self-service",
+            "type": "decision",
+            "position": {
+              "x": 600,
+              "y": 300
+            },
+            "data": {
+              "title": "Can docs help?",
+              "prompt": "Can the request be resolved with a documentation link or standard how-to instructions?",
+              "demoDecision": "YES"
+            }
+          },
+          {
+            "id": "escalate",
+            "type": "decision",
+            "position": {
+              "x": 40,
+              "y": 570
+            },
+            "data": {
+              "title": "Escalation ready?",
+              "prompt": "Does the request contain enough context to escalate to the engineering team?",
+              "demoDecision": "YES"
+            }
+          },
+          {
+            "id": "support",
+            "type": "decision",
+            "position": {
+              "x": 420,
+              "y": 570
+            },
+            "data": {
+              "title": "Support can resolve?",
+              "prompt": "Can a support agent resolve this request without engineering involvement?",
+              "demoDecision": "YES"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "urgency-yes",
+            "source": "urgency",
+            "target": "specialist",
+            "sourceHandle": "YES"
+          },
+          {
+            "id": "urgency-no",
+            "source": "urgency",
+            "target": "self-service",
+            "sourceHandle": "NO"
+          },
+          {
+            "id": "specialist-yes",
+            "source": "specialist",
+            "target": "escalate",
+            "sourceHandle": "YES"
+          },
+          {
+            "id": "specialist-no",
+            "source": "specialist",
+            "target": "support",
+            "sourceHandle": "NO"
+          },
+          {
+            "id": "self-service-no",
+            "source": "self-service",
+            "target": "support",
+            "sourceHandle": "NO"
+          }
+        ]
+      },
+      "input": "An example support request for durable branch testing.",
+      "mode": "demo",
+      "status": "completed",
+      "createdAt": "2026-10-08T06:36:13.018Z",
+      "updatedAt": "2026-10-08T06:36:15.302Z",
+      "steps": [
+        {
+          "nodeId": "urgency",
+          "title": "Is this urgent?",
+          "decision": "YES",
+          "nextNodeId": "specialist",
+          "durationMs": 660,
+          "completedAt": "2026-10-08T06:36:13.937Z"
+        },
+        {
+          "nodeId": "specialist",
+          "title": "Needs a specialist?",
+          "decision": "YES",
+          "nextNodeId": "escalate",
+          "durationMs": 656,
+          "completedAt": "2026-10-08T06:36:14.619Z"
+        },
+        {
+          "nodeId": "escalate",
+          "title": "Escalation ready?",
+          "decision": "YES",
+          "nextNodeId": null,
+          "durationMs": 663,
+          "completedAt": "2026-10-08T06:36:15.293Z"
+        }
+      ],
+      "activeNodeId": null,
+      "attempts": {
+        "urgency": 1,
+        "specialist": 1,
+        "escalate": 1
+      },
+      "error": null,
+      "eventId": "01M4D3M1V3YF35BKNCKZZS73P9"
+    },
+    {
+      "id": "30f35c85-f270-4838-9c91-c34570f60ad3",
+      "graph": {
+        "version": 1,
+        "name": "Support request triage",
+        "entryNodeId": "urgency",
+        "nodes": [
+          {
+            "id": "urgency",
+            "type": "decision",
+            "position": {
+              "x": 360,
+              "y": 40
+            },
+            "data": {
+              "title": "Is this urgent?",
+              "prompt": "Does the support request describe a service outage, payment failure, or a serious blocker?",
+              "demoDecision": "NO"
+            }
+          },
+          {
+            "id": "specialist",
+            "type": "decision",
+            "position": {
+              "x": 140,
+              "y": 300
+            },
+            "data": {
+              "title": "Needs a specialist?",
+              "prompt": "Does the request require engineering expertise, rather than a standard support response?",
+              "demoDecision": "YES"
+            }
+          },
+          {
+            "id": "self-service",
+            "type": "decision",
+            "position": {
+              "x": 600,
+              "y": 300
+            },
+            "data": {
+              "title": "Can docs help?",
+              "prompt": "Can the request be resolved with a documentation link or standard how-to instructions?",
+              "demoDecision": "YES"
+            }
+          },
+          {
+            "id": "escalate",
+            "type": "decision",
+            "position": {
+              "x": 40,
+              "y": 570
+            },
+            "data": {
+              "title": "Escalation ready?",
+              "prompt": "Does the request contain enough context to escalate to the engineering team?",
+              "demoDecision": "YES"
+            }
+          },
+          {
+            "id": "support",
+            "type": "decision",
+            "position": {
+              "x": 420,
+              "y": 570
+            },
+            "data": {
+              "title": "Support can resolve?",
+              "prompt": "Can a support agent resolve this request without engineering involvement?",
+              "demoDecision": "YES"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "urgency-yes",
+            "source": "urgency",
+            "target": "specialist",
+            "sourceHandle": "YES"
+          },
+          {
+            "id": "urgency-no",
+            "source": "urgency",
+            "target": "self-service",
+            "sourceHandle": "NO"
+          },
+          {
+            "id": "specialist-yes",
+            "source": "specialist",
+            "target": "escalate",
+            "sourceHandle": "YES"
+          },
+          {
+            "id": "specialist-no",
+            "source": "specialist",
+            "target": "support",
+            "sourceHandle": "NO"
+          },
+          {
+            "id": "self-service-no",
+            "source": "self-service",
+            "target": "support",
+            "sourceHandle": "NO"
+          }
+        ]
+      },
+      "input": "An example support request for durable branch testing.",
+      "mode": "demo",
+      "status": "completed",
+      "createdAt": "2026-10-08T06:36:15.545Z",
+      "updatedAt": "2026-10-08T06:36:17.147Z",
+      "steps": [
+        {
+          "nodeId": "urgency",
+          "title": "Is this urgent?",
+          "decision": "NO",
+          "nextNodeId": "self-service",
+          "durationMs": 663,
+          "completedAt": "2026-10-08T06:36:16.434Z"
+        },
+        {
+          "nodeId": "self-service",
+          "title": "Can docs help?",
+          "decision": "YES",
+          "nextNodeId": null,
+          "durationMs": 665,
+          "completedAt": "2026-10-08T06:36:17.113Z"
+        }
+      ],
+      "activeNodeId": null,
+      "attempts": {
+        "urgency": 1,
+        "self-service": 1
+      },
+      "error": null,
+      "eventId": "01M4D3M49ZBZBPDQ2ZC2J4WPCT"
+    }
+  ],
+  "checks": [
+    "Real Inngest event IDs returned",
+    "YES visits urgency → specialist → escalate",
+    "NO visits urgency → self-service",
+    "Unused branches skipped",
+    "Completed-run retry rejected with 409",
+    "Cyclic graph rejected with 400"
+  ]
+}

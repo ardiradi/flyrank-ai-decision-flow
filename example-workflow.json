@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "name": "Support request triage",
+  "entryNodeId": "urgency",
+  "nodes": [
+    {
+      "id": "urgency",
+      "type": "decision",
+      "position": {
+        "x": 360,
+        "y": 40
+      },
+      "data": {
+        "title": "Is this urgent?",
+        "prompt": "Does the support request describe a service outage, payment failure, or a serious blocker?",
+        "demoDecision": "YES"
+      }
+    },
+    {
+      "id": "specialist",
+      "type": "decision",
+      "position": {
+        "x": 140,
+        "y": 300
+      },
+      "data": {
+        "title": "Needs a specialist?",
+        "prompt": "Does the request require engineering expertise, rather than a standard support response?",
+        "demoDecision": "YES"
+      }
+    },
+    {
+      "id": "self-service",
+      "type": "decision",
+      "position": {
+        "x": 600,
+        "y": 300
+      },
+      "data": {
+        "title": "Can docs help?",
+        "prompt": "Can the request be resolved with a documentation link or standard how-to instructions?",
+        "demoDecision": "YES"
+      }
+    },
+    {
+      "id": "escalate",
+      "type": "decision",
+      "position": {
+        "x": 40,
+        "y": 570
+      },
+      "data": {
+        "title": "Escalation ready?",
+        "prompt": "Does the request contain enough context to escalate to the engineering team?",
+        "demoDecision": "YES"
+      }
+    },
+    {
+      "id": "support",
+      "type": "decision",
+      "position": {
+        "x": 420,
+        "y": 570
+      },
+      "data": {
+        "title": "Support can resolve?",
+        "prompt": "Can a support agent resolve this request without engineering involvement?",
+        "demoDecision": "YES"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "urgency-yes",
+      "source": "urgency",
+      "target": "specialist",
+      "sourceHandle": "YES"
+    },
+    {
+      "id": "urgency-no",
+      "source": "urgency",
+      "target": "self-service",
+      "sourceHandle": "NO"
+    },
+    {
+      "id": "specialist-yes",
+      "source": "specialist",
+      "target": "escalate",
+      "sourceHandle": "YES"
+    },
+    {
+      "id": "specialist-no",
+      "source": "specialist",
+      "target": "support",
+      "sourceHandle": "NO"
+    },
+    {
+      "id": "self-service-no",
+      "source": "self-service",
+      "target": "support",
+      "sourceHandle": "NO"
+    }
+  ]
+}
