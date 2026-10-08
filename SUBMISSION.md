@@ -1,5 +1,7 @@
 # BE09 submission notes
 
+Repository: [ardiradi/flyrank-ai-decision-flow](https://github.com/ardiradi/flyrank-ai-decision-flow)
+
 ## Summary
 
 Branch Studio is a visual AI decision workflow app. React Flow lets users create, connect, drag, and edit prompt nodes with labeled YES/NO branches. An Express API validates an immutable graph snapshot, stores a run, and sends an Inngest event. Each visited node executes in its own durable Inngest step. The OpenAI Responses integration enforces exactly YES or NO, follows the matching edge, and records execution order. A missing matching edge ends the path.
@@ -20,6 +22,7 @@ Branch Studio is a visual AI decision workflow app. React Flow lets users create
 - `npm run build`: TypeScript checks and Vite production build passed.
 - `npm run verify:integration`: two actual Inngest events completed locally. YES path: `urgency → specialist → escalate`. NO path: `urgency → self-service`. Unused branches were skipped.
 - `npm audit`: zero reported vulnerabilities after dependency updates.
+- Tracked source scanned before publication: no credential patterns or private environment/run-store files found. See `evidence/publish-check.json`.
 
 Evidence is in `evidence/integration-verification.json` and includes the actual event IDs and run snapshots. This verification used **Demo mode**, which chooses the answer configured on each node. **No live OpenAI call was made**, because no API key was available during verification. The OpenAI integration is implemented, but live provider behavior remains to be verified with a valid key.
 

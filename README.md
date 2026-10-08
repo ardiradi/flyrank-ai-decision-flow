@@ -1,5 +1,7 @@
 # Branch Studio — AI Decision Flow
 
+Source repository: [ardiradi/flyrank-ai-decision-flow](https://github.com/ardiradi/flyrank-ai-decision-flow).
+
 FlyRank Backend AI Engineering assignment **BE09: AI Decision Flow**. A visual decision workflow editor built with **React + TypeScript, React Flow, shadcn/ui, Express, Inngest, and the official OpenAI SDK**.
 
 Design an acyclic graph of AI questions. Give every decision an optional YES and NO edge. Run the graph against a scenario; Inngest evaluates one node at a time and follows only the matching edge. An answer without a matching edge ends the run.
