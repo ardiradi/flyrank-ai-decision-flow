@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "verifiedAtUtc": "2026-10-09T12:08:28.5607089Z",
+  "provider": "Local llama.cpp b11491 CPU via OpenAI SDK Responses API",
+  "repository": "Qwen/Qwen2.5-1.5B-Instruct-GGUF",
+  "revision": "91cad51170dc346986eccefdc2dd33a9da36ead9",
+  "filename": "qwen2.5-1.5b-instruct-q4_k_m.gguf",
+  "bytes": 1117320736,
+  "sha256": "6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e",
+  "source": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF/resolve/91cad51170dc346986eccefdc2dd33a9da36ead9/qwen2.5-1.5b-instruct-q4_k_m.gguf",
+  "wholeFileBytesAndSha256Verified": true,
+  "weightsAndRuntimeOutsideRepository": true,
+  "loadedAlias": "qwen2.5-1.5b-instruct",
+  "nativeHealth": "ok",
+  "nativeModelContextTokens": 2048,
+  "sampling": {"temperature": 0, "maxOutputTokens": 16, "concurrency": 1},
+  "paidApiCallsMade": false,
+  "limits": "Successful loading is not classification quality or a general accuracy claim. Evaluation labels remain AI-drafted and human review is pending. Only one model server runs at a time on this machine."
+}

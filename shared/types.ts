@@ -1,12 +1,15 @@
 export type Decision = "YES" | "NO";
 export type ExecutionMode = "demo" | "openai";
 export type ProviderKind = "local-openai-compatible" | "openai" | "openai-compatible";
+export type LocalPromptVariant = "baseline" | "domain-examples-v2";
 export interface ProviderResponse {
   kind: ProviderKind;
   model: string;
   responseId: string;
   outputIds: string[];
   rawOutput: string;
+  /** Local server prompt profile; omitted for hosted providers and older evidence. */
+  promptVariant?: LocalPromptVariant;
   usage?: { inputTokens: number; outputTokens: number; totalTokens: number };
 }
 export interface EvaluatedDecision {
@@ -43,7 +46,9 @@ export interface ExecutionStep {
   completedAt: string;
   provider?: ProviderResponse;
 }
-export type RunStatus = "queued" | "running" | "retrying" | "completed" | "failed";
+export type RunStatus = "queued" | "running" | "retrying" | "completed" | "failed" | "interrupted";
+export interface RunRecovery { eligible: boolean; staleAfter: string | null; message: string }
+export interface RunLease { id: string; expiresAt: string }
 export interface WorkflowRun {
   id: string;
   graph: WorkflowGraph;
@@ -58,4 +63,8 @@ export interface WorkflowRun {
   attempts: Record<string, number>;
   error: string | null;
   retriedFrom?: string;
+  /** Persisted fence for workers. It is revoked only by explicit recovery. */
+  lease?: RunLease;
+  /** Computed by the API; never written into stored evidence. */
+  recovery?: RunRecovery;
 }

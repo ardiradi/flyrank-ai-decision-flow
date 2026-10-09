@@ -1,4 +1,5 @@
 import "dotenv/config";
+import { parseLocalPromptVariant } from "./decision-prompt";
 import type { ProviderKind } from "../shared/types";
 
 export function describeProvider(baseURL: string): ProviderKind {
@@ -11,13 +12,16 @@ export function describeProvider(baseURL: string): ProviderKind {
 
 process.env.INNGEST_DEV ??= "1";
 if (process.env.INNGEST_DEV === "1") process.env.INNGEST_BASE_URL ??= "http://127.0.0.1:8289";
+const providerKind = describeProvider(process.env.OPENAI_BASE_URL || "https://api.openai.com/v1");
 
 export const config = {
   port: Number(process.env.PORT || 3002),
   host: process.env.HOST || "127.0.0.1",
   openaiConfigured: Boolean(process.env.OPENAI_API_KEY?.trim()),
   model: process.env.OPENAI_MODEL || "gpt-4.1-mini",
-  providerKind: describeProvider(process.env.OPENAI_BASE_URL || "https://api.openai.com/v1"),
+  localContextTokens: Number(process.env.LOCAL_LLM_CONTEXT_TOKENS || 2048),
+  localPromptVariant: providerKind === "local-openai-compatible" ? parseLocalPromptVariant(process.env.LOCAL_LLM_PROMPT_VARIANT) : "baseline" as const,
+  providerKind,
   inngestDev: process.env.INNGEST_DEV === "1",
   inngestUrl: process.env.INNGEST_BASE_URL || "https://api.inngest.com",
 };

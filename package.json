@@ -12,7 +12,9 @@
     "start": "tsx server/index.ts",
     "test": "tsx --test tests/*.test.ts",
     "verify:integration": "tsx scripts/verify-integration.ts",
-    "verify:provider": "tsx scripts/verify-provider.ts"
+    "verify:provider": "tsx scripts/verify-provider.ts",
+    "verify:recovery": "tsx scripts/verify-live-recovery.ts",
+    "eval:model": "tsx scripts/evaluate-model.ts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",

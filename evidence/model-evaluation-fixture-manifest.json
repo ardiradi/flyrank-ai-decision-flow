@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "frozenAt": "2026-10-09T07:28:16.023Z",
+  "path": "evidence/model-evaluation-fixtures.json",
+  "sha256": "d7e2e2d65f3582451019d47fb78981e488462106bf0cb3d5542f287551e06a6e",
+  "cases": 24,
+  "development": 16,
+  "heldOut": 8,
+  "humanReviewStatus": "pending",
+  "labelChangesPolicy": "Any human correction creates a new version/hash; retain the original dataset and runs."
+}

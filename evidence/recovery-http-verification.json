@@ -1,0 +1,28 @@
+{
+  "verifiedAt": "2026-10-09T11:20:09.5673854Z",
+  "checks": [
+    {
+      "path": "/api/runs/missing-recovery-test/recover",
+      "status": 404,
+      "error": "Run not found."
+    },
+    {
+      "path": "/api/runs/2bd0a2fb-e5f4-4962-8273-14512344ad6d/recover",
+      "status": 409,
+      "error": "This run does not need interruption recovery."
+    },
+    {
+      "path": "/api/runs/2bd0a2fb-e5f4-4962-8273-14512344ad6d/retry",
+      "status": 409,
+      "error": "Only a failed or interrupted run can be retried. Recover an expired active run first, or start a new run to repeat a completed workflow."
+    }
+  ],
+  "completedRunRecoveryEligible": false,
+  "expectedStatuses": [
+    404,
+    409,
+    409
+  ],
+  "syntheticChecksOnly": true,
+  "note": "HTTP checks validate refusal to recover missing or terminal runs. Actual isolated process kill/restart and recovery is covered by tests/recovery.test.ts, not claimed as a live Inngest engine restart."
+}

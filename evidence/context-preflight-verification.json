@@ -1,0 +1,14 @@
+{
+  "verifiedAt": "2026-10-09T11:16:51.8976394Z",
+  "provider": "local Qwen 0.5B",
+  "contextTokens": 2048,
+  "inputCharacters": 11050,
+  "httpStatus": 400,
+  "response": {
+    "error": "Decision \"Is this urgent?\" needs 8059 tokens including its answer reserve, exceeding the 2048-token local context. Shorten the workflow input or decision questions, or deliberately increase both the server context and LOCAL_LLM_CONTEXT_TOKENS. No input was trimmed."
+  },
+  "historyCountBefore": 10,
+  "historyCountAfter": 10,
+  "historyUnchanged": true,
+  "syntheticInputOnly": true
+}

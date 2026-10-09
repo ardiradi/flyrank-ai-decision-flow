@@ -1,0 +1,885 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-09T12:02:49.350Z",
+  "completedAt": "2026-10-09T12:02:55.693Z",
+  "passed": false,
+  "mode": "demo",
+  "syntheticInputOnly": true,
+  "llmCallsMade": false,
+  "paidApiCallsMade": false,
+  "isolation": {
+    "ports": {
+      "api": 3032,
+      "engine": 8329,
+      "gateway": 8330,
+      "gatewayGrpc": 53352,
+      "executorGrpc": 53353
+    },
+    "dataDirectoryBasename": "be09-live-recovery-jesDMJ",
+    "freshTemporaryHistory": true,
+    "userHistoryTouched": false,
+    "existingServicesTouched": false
+  },
+  "source": {
+    "api": "server/index.ts",
+    "function": "server/inngest.ts",
+    "store": "server/store.ts",
+    "leaseMilliseconds": 300000
+  },
+  "lifecycle": [
+    {
+      "action": "launch",
+      "label": "API-original",
+      "pid": 4840,
+      "executable": "node.exe",
+      "identityVerified": true,
+      "at": "2026-10-09T12:02:51.490Z"
+    },
+    {
+      "action": "launch",
+      "label": "Inngest-original",
+      "pid": 2184,
+      "executable": "inngest.exe",
+      "identityVerified": true,
+      "at": "2026-10-09T12:02:53.382Z"
+    },
+    {
+      "action": "pair-ready",
+      "generation": "original",
+      "providerConfigured": false,
+      "at": "2026-10-09T12:02:53.387Z"
+    },
+    {
+      "action": "abrupt-stop",
+      "label": "Inngest-original",
+      "pid": 2184,
+      "identityVerifiedBeforeStop": true,
+      "at": "2026-10-09T12:02:55.087Z"
+    },
+    {
+      "action": "abrupt-stop",
+      "label": "API-original",
+      "pid": 4840,
+      "identityVerifiedBeforeStop": true,
+      "at": "2026-10-09T12:02:55.693Z"
+    }
+  ],
+  "checks": [],
+  "boundaries": [
+    "The actual local Inngest Dev Server and API worker are abruptly terminated and restarted on isolated ports.",
+    "The engine uses its default unpersisted development state; engine execution state is lost while API JSON history is retained.",
+    "The expiry wait uses the persisted production five-minute lease and real wall-clock time; no clock or saved history is edited.",
+    "Demo uses deterministic configured YES answers and makes no LLM or paid provider calls; this does not measure model quality or frontend behavior."
+  ],
+  "originalActiveObservation": {
+    "id": "ee981764-accc-4377-993f-ea6ea75184ac",
+    "graph": {
+      "version": 1,
+      "name": "Synthetic live-restart recovery chain",
+      "entryNodeId": "synthetic-01",
+      "nodes": [
+        {
+          "id": "synthetic-01",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 80
+          },
+          "data": {
+            "title": "Synthetic decision 1",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-02",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 160
+          },
+          "data": {
+            "title": "Synthetic decision 2",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-03",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 240
+          },
+          "data": {
+            "title": "Synthetic decision 3",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-04",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 320
+          },
+          "data": {
+            "title": "Synthetic decision 4",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-05",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 400
+          },
+          "data": {
+            "title": "Synthetic decision 5",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-06",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 480
+          },
+          "data": {
+            "title": "Synthetic decision 6",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-07",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 560
+          },
+          "data": {
+            "title": "Synthetic decision 7",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-08",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 640
+          },
+          "data": {
+            "title": "Synthetic decision 8",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-09",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 720
+          },
+          "data": {
+            "title": "Synthetic decision 9",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-10",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 800
+          },
+          "data": {
+            "title": "Synthetic decision 10",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-11",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 880
+          },
+          "data": {
+            "title": "Synthetic decision 11",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-12",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 960
+          },
+          "data": {
+            "title": "Synthetic decision 12",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-13",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1040
+          },
+          "data": {
+            "title": "Synthetic decision 13",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-14",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1120
+          },
+          "data": {
+            "title": "Synthetic decision 14",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-15",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1200
+          },
+          "data": {
+            "title": "Synthetic decision 15",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-16",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1280
+          },
+          "data": {
+            "title": "Synthetic decision 16",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-17",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1360
+          },
+          "data": {
+            "title": "Synthetic decision 17",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-18",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1440
+          },
+          "data": {
+            "title": "Synthetic decision 18",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-19",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1520
+          },
+          "data": {
+            "title": "Synthetic decision 19",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-20",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1600
+          },
+          "data": {
+            "title": "Synthetic decision 20",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-21",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1680
+          },
+          "data": {
+            "title": "Synthetic decision 21",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-22",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1760
+          },
+          "data": {
+            "title": "Synthetic decision 22",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-23",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1840
+          },
+          "data": {
+            "title": "Synthetic decision 23",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-24",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 1920
+          },
+          "data": {
+            "title": "Synthetic decision 24",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-25",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2000
+          },
+          "data": {
+            "title": "Synthetic decision 25",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-26",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2080
+          },
+          "data": {
+            "title": "Synthetic decision 26",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-27",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2160
+          },
+          "data": {
+            "title": "Synthetic decision 27",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-28",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2240
+          },
+          "data": {
+            "title": "Synthetic decision 28",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-29",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2320
+          },
+          "data": {
+            "title": "Synthetic decision 29",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-30",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2400
+          },
+          "data": {
+            "title": "Synthetic decision 30",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-31",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2480
+          },
+          "data": {
+            "title": "Synthetic decision 31",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-32",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2560
+          },
+          "data": {
+            "title": "Synthetic decision 32",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-33",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2640
+          },
+          "data": {
+            "title": "Synthetic decision 33",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-34",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2720
+          },
+          "data": {
+            "title": "Synthetic decision 34",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-35",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2800
+          },
+          "data": {
+            "title": "Synthetic decision 35",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-36",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2880
+          },
+          "data": {
+            "title": "Synthetic decision 36",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-37",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 2960
+          },
+          "data": {
+            "title": "Synthetic decision 37",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-38",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 3040
+          },
+          "data": {
+            "title": "Synthetic decision 38",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-39",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 3120
+          },
+          "data": {
+            "title": "Synthetic decision 39",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "synthetic-40",
+          "type": "decision",
+          "position": {
+            "x": 0,
+            "y": 3200
+          },
+          "data": {
+            "title": "Synthetic decision 40",
+            "prompt": "Does this synthetic fixture use the configured Demo YES path?",
+            "demoDecision": "YES"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "synthetic-edge-1",
+          "source": "synthetic-01",
+          "target": "synthetic-02",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-2",
+          "source": "synthetic-02",
+          "target": "synthetic-03",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-3",
+          "source": "synthetic-03",
+          "target": "synthetic-04",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-4",
+          "source": "synthetic-04",
+          "target": "synthetic-05",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-5",
+          "source": "synthetic-05",
+          "target": "synthetic-06",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-6",
+          "source": "synthetic-06",
+          "target": "synthetic-07",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-7",
+          "source": "synthetic-07",
+          "target": "synthetic-08",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-8",
+          "source": "synthetic-08",
+          "target": "synthetic-09",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-9",
+          "source": "synthetic-09",
+          "target": "synthetic-10",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-10",
+          "source": "synthetic-10",
+          "target": "synthetic-11",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-11",
+          "source": "synthetic-11",
+          "target": "synthetic-12",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-12",
+          "source": "synthetic-12",
+          "target": "synthetic-13",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-13",
+          "source": "synthetic-13",
+          "target": "synthetic-14",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-14",
+          "source": "synthetic-14",
+          "target": "synthetic-15",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-15",
+          "source": "synthetic-15",
+          "target": "synthetic-16",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-16",
+          "source": "synthetic-16",
+          "target": "synthetic-17",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-17",
+          "source": "synthetic-17",
+          "target": "synthetic-18",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-18",
+          "source": "synthetic-18",
+          "target": "synthetic-19",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-19",
+          "source": "synthetic-19",
+          "target": "synthetic-20",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-20",
+          "source": "synthetic-20",
+          "target": "synthetic-21",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-21",
+          "source": "synthetic-21",
+          "target": "synthetic-22",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-22",
+          "source": "synthetic-22",
+          "target": "synthetic-23",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-23",
+          "source": "synthetic-23",
+          "target": "synthetic-24",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-24",
+          "source": "synthetic-24",
+          "target": "synthetic-25",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-25",
+          "source": "synthetic-25",
+          "target": "synthetic-26",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-26",
+          "source": "synthetic-26",
+          "target": "synthetic-27",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-27",
+          "source": "synthetic-27",
+          "target": "synthetic-28",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-28",
+          "source": "synthetic-28",
+          "target": "synthetic-29",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-29",
+          "source": "synthetic-29",
+          "target": "synthetic-30",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-30",
+          "source": "synthetic-30",
+          "target": "synthetic-31",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-31",
+          "source": "synthetic-31",
+          "target": "synthetic-32",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-32",
+          "source": "synthetic-32",
+          "target": "synthetic-33",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-33",
+          "source": "synthetic-33",
+          "target": "synthetic-34",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-34",
+          "source": "synthetic-34",
+          "target": "synthetic-35",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-35",
+          "source": "synthetic-35",
+          "target": "synthetic-36",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-36",
+          "source": "synthetic-36",
+          "target": "synthetic-37",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-37",
+          "source": "synthetic-37",
+          "target": "synthetic-38",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-38",
+          "source": "synthetic-38",
+          "target": "synthetic-39",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "synthetic-edge-39",
+          "source": "synthetic-39",
+          "target": "synthetic-40",
+          "sourceHandle": "YES"
+        }
+      ]
+    },
+    "input": "Synthetic deterministic live engine restart recovery fixture. No user information or provider inference.",
+    "mode": "demo",
+    "status": "running",
+    "createdAt": "2026-10-09T12:02:53.418Z",
+    "updatedAt": "2026-10-09T12:02:54.519Z",
+    "steps": [
+      {
+        "nodeId": "synthetic-01",
+        "title": "Synthetic decision 1",
+        "decision": "YES",
+        "nextNodeId": "synthetic-02",
+        "durationMs": 669,
+        "completedAt": "2026-10-09T12:02:54.501Z"
+      }
+    ],
+    "activeNodeId": "synthetic-02",
+    "attempts": {
+      "synthetic-01": 1,
+      "synthetic-02": 1
+    },
+    "error": null,
+    "eventId": "01M4G8PXVH59Q6JQM3R6WCKZMH",
+    "lease": {
+      "id": "ca94df78-d6d1-479c-8833-739241f10571",
+      "expiresAt": "2026-10-09T12:07:54.524Z"
+    },
+    "recovery": {
+      "eligible": false,
+      "staleAfter": "2026-10-09T12:07:54.524Z",
+      "message": "The run still has a valid worker or queue lease. Recovery becomes available after five minutes without progress."
+    }
+  },
+  "originalEngineRunBeforeStop": {
+    "run_id": "01M4G8PY28DQ6JFM7XEV2B7VZM",
+    "run_started_at": "2026-10-09T12:02:53.64Z",
+    "function_id": "54f8dfd4-9e05-5a95-a9ca-5680563c4e27",
+    "function_version": 0,
+    "environment_id": "00000000-0000-0000-0000-000000000000",
+    "event_id": "01M4G8PXVH59Q6JQM3R6WCKZMH",
+    "status": "Completed",
+    "ended_at": null
+  },
+  "error": {
+    "name": "AssertionError",
+    "message": "Expected \"actual\" to be strictly unequal to:\n\n'Completed'"
+  }
+}

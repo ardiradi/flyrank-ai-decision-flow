@@ -1,0 +1,419 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-09T07:28:32.646Z",
+  "completedAt": "2026-10-09T07:28:40.686Z",
+  "variant": "baseline",
+  "split": "development",
+  "fixtureSha256": "d7e2e2d65f3582451019d47fb78981e488462106bf0cb3d5542f287551e06a6e",
+  "baselineDecisionSourceSha256": "a9bbe6e26f084190c5f64710f46c4f756f286326db1b5e468bab6e44fcd91aec",
+  "evaluatorSourceSha256": "6d206455880d3379be2baec2c7ddee2c33f03d15666b03bb5ea5b0eb18fd78fb",
+  "candidateFunctionSha256": "8bbf4b7d87589ae24bac2cdf6cba262f774f7b4e55e24c886941c551c747429b",
+  "model": "qwen2.5-0.5b-instruct",
+  "provider": "local llama.cpp via OpenAI SDK Responses API",
+  "syntheticInputsOnly": true,
+  "paidApiCallsMade": false,
+  "concurrency": 1,
+  "sampling": {
+    "temperature": 0,
+    "maxOutputTokens": 16,
+    "timeoutMs": 20000,
+    "maxRetries": 0
+  },
+  "labels": {
+    "provenance": "AI-drafted labels and synthetic tickets; human review is pending. No label was supplied by a model prediction.",
+    "humanReviewStatus": "pending"
+  },
+  "method": "Baseline replays frozen production buildDecisionInput() payload and identical production instructions through the same SDK. Candidate changes only the user input wrapper; instructions, model and sampling stay fixed. All raw outputs/errors remain recorded, including invalid or wrong decisions. This evaluates one decision, not Inngest routing.",
+  "observations": [
+    {
+      "caseId": "dev-01",
+      "split": "development",
+      "category": "outage",
+      "expectedDraftLabel": "YES",
+      "startedAt": "2026-10-09T07:28:32.649Z",
+      "requestSha256": "dcdb8339d9f92e0bc5694ffc7e72efa890620a4799f690601cba45488ead1bd2",
+      "latencyMs": 1742,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": true,
+      "responseId": "resp_BTKI7H94hVnF2i9Kxhak3jZg9KKBbA5Y",
+      "outputIds": [
+        "msg_sLExoCOfBx7ci76pCSEIqd8uUzbzqYY0"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 241,
+        "outputTokens": 2,
+        "totalTokens": 243
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-02",
+      "split": "development",
+      "category": "payment failure",
+      "expectedDraftLabel": "YES",
+      "startedAt": "2026-10-09T07:28:34.394Z",
+      "requestSha256": "4a6bed2503d49f1ab98ec814cea278ab55fb7f1a2040361820d24297aaa0a5a8",
+      "latencyMs": 372,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": true,
+      "responseId": "resp_yyOybzrvid0CN6ntDRVhUsz2gpjbZTso",
+      "outputIds": [
+        "msg_f6fGGblQUZZBcf4DbaBuw96ChLTBBmqS"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 231,
+        "outputTokens": 2,
+        "totalTokens": 233
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-03",
+      "split": "development",
+      "category": "serious blocker",
+      "expectedDraftLabel": "YES",
+      "startedAt": "2026-10-09T07:28:34.768Z",
+      "requestSha256": "41686cd048c9a8a06fbcca2feaadc0c498fff2bcac7516f2c26e41b19ee0034e",
+      "latencyMs": 464,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": true,
+      "responseId": "resp_V2cm5XdaJcCDMTdpHOGst2sKn7DIHWjc",
+      "outputIds": [
+        "msg_PJgMVjRfLSRsmTV4yjOpe8leGSr6FAga"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 239,
+        "outputTokens": 2,
+        "totalTokens": 241
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-04",
+      "split": "development",
+      "category": "outage",
+      "expectedDraftLabel": "YES",
+      "startedAt": "2026-10-09T07:28:35.234Z",
+      "requestSha256": "4ecb8bb2b5b85649266fdebb2f98585d66c46d8b56052d1ed3bf3ffa9520bfe5",
+      "latencyMs": 397,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": true,
+      "responseId": "resp_ScKBwcie8GVFNw3AtEtbTWR33OjLSlmZ",
+      "outputIds": [
+        "msg_MvLQcI2SstbwkF0gWq1HBcCt3qVsr1AL"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 231,
+        "outputTokens": 2,
+        "totalTokens": 233
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-05",
+      "split": "development",
+      "category": "payment failure",
+      "expectedDraftLabel": "YES",
+      "startedAt": "2026-10-09T07:28:35.633Z",
+      "requestSha256": "681ef0205308cb1bddb2fcfdf56e6e0f8e78d6c858b120154b00ba834490c291",
+      "latencyMs": 376,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": true,
+      "responseId": "resp_ZXLULxRLMfVYN1BvX0tiTCrVZ23qkV7P",
+      "outputIds": [
+        "msg_8wSwlMYpfuk2nsYpEBW7WceSBcQZez34"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 234,
+        "outputTokens": 2,
+        "totalTokens": 236
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-06",
+      "split": "development",
+      "category": "serious blocker",
+      "expectedDraftLabel": "YES",
+      "startedAt": "2026-10-09T07:28:36.011Z",
+      "requestSha256": "bfcde1552c7037c39e7fbd024eb5cea968380a63e1acf3bf41676a6f1578cb6f",
+      "latencyMs": 457,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": true,
+      "responseId": "resp_1qZAX9EUN6rIk43L4766WZErGayznlGg",
+      "outputIds": [
+        "msg_b2DLVNUGj11pwOM0J31OqV33OCCbsGzZ"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 238,
+        "outputTokens": 2,
+        "totalTokens": 240
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-07",
+      "split": "development",
+      "category": "negation with active incident",
+      "expectedDraftLabel": "YES",
+      "startedAt": "2026-10-09T07:28:36.469Z",
+      "requestSha256": "02708ceaf5ac9b0968a3d6c8fb8f4711fec292d6f15c21adb4e4b6ad7257cf03",
+      "latencyMs": 404,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": true,
+      "responseId": "resp_ffy1IIEfptxAxWZbBFb7C4m2XSjTfc4Q",
+      "outputIds": [
+        "msg_uVHTI7dczUTbE8ZayNZtQTx2yCGp8AL3"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 232,
+        "outputTokens": 2,
+        "totalTokens": 234
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-08",
+      "split": "development",
+      "category": "instruction in ticket with incident",
+      "expectedDraftLabel": "YES",
+      "startedAt": "2026-10-09T07:28:36.875Z",
+      "requestSha256": "2ce8044729e4b5a87dc31a981e0ab224270cdb09c8fc93e7c74d0c73044106a1",
+      "latencyMs": 431,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": true,
+      "responseId": "resp_B3Wv5tDfzN9Dw2Z87cnxeJLWLN6IFzj9",
+      "outputIds": [
+        "msg_j8QI5wg6boboMtBYToSm2pGKPWuUCeaP"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 239,
+        "outputTokens": 2,
+        "totalTokens": 241
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-09",
+      "split": "development",
+      "category": "routine",
+      "expectedDraftLabel": "NO",
+      "startedAt": "2026-10-09T07:28:37.308Z",
+      "requestSha256": "74e10af489a8f8ed6e6b86b9cab5e7c057e3c179006d575c66da85487c25bc5d",
+      "latencyMs": 457,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": false,
+      "responseId": "resp_zl8EBQ59OZs8Vz63gR6N5RHCmu0CddYe",
+      "outputIds": [
+        "msg_33Zm94GoWEhZQYRVAtgko0vGI3ARhpwa"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 240,
+        "outputTokens": 2,
+        "totalTokens": 242
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-10",
+      "split": "development",
+      "category": "routine",
+      "expectedDraftLabel": "NO",
+      "startedAt": "2026-10-09T07:28:37.766Z",
+      "requestSha256": "3d54c0ea49a10eb2dd4889a65247ce6b8b84533f947306db9c218b563ca9b228",
+      "latencyMs": 390,
+      "rawOutput": "NO",
+      "decision": "NO",
+      "matchesDraftLabel": true,
+      "responseId": "resp_OzRyYbSH6UOs8ut05WZxWk60fwuO37fA",
+      "outputIds": [
+        "msg_JmrTGdfzRKCRiSb4f1y1U6xZoEJ61KDx"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 234,
+        "outputTokens": 2,
+        "totalTokens": 236
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-11",
+      "split": "development",
+      "category": "negation",
+      "expectedDraftLabel": "NO",
+      "startedAt": "2026-10-09T07:28:38.158Z",
+      "requestSha256": "6caa9f4eb49829776aeefebcce5d0eaff2375bdda55687eaa1f938123e136a29",
+      "latencyMs": 445,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": false,
+      "responseId": "resp_iv55kaDJZ3es9qPeoJ8qYoOll2wNXcEx",
+      "outputIds": [
+        "msg_8xqkOQolkkBqnaHRCguRRhZVxs54H1Tv"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 234,
+        "outputTokens": 2,
+        "totalTokens": 236
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-12",
+      "split": "development",
+      "category": "insufficient evidence",
+      "expectedDraftLabel": "NO",
+      "startedAt": "2026-10-09T07:28:38.605Z",
+      "requestSha256": "14fa118ef0d5e2992955aa7d9953c91ce6d53b184901fe8b8712ce80c23659f0",
+      "latencyMs": 268,
+      "rawOutput": "NO",
+      "decision": "NO",
+      "matchesDraftLabel": true,
+      "responseId": "resp_cZ0XudUyuqWoCBB1U08IKrADuNF7iXJG",
+      "outputIds": [
+        "msg_iaCyYjD6sWc0cppDVkbSEezUS2uZhyHD"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 217,
+        "outputTokens": 2,
+        "totalTokens": 219
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-13",
+      "split": "development",
+      "category": "keyword without incident",
+      "expectedDraftLabel": "NO",
+      "startedAt": "2026-10-09T07:28:38.874Z",
+      "requestSha256": "56500316dfe324b9c934ade70a1473ad02c85c2ce9ef5452f87791e1c3276520",
+      "latencyMs": 466,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": false,
+      "responseId": "resp_DVgAre0EaHN86SBqSuPICk06GcJwHYBL",
+      "outputIds": [
+        "msg_IS34JFIDdzlYlVyJKbEQin65Q0FDkJlX"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 243,
+        "outputTokens": 2,
+        "totalTokens": 245
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-14",
+      "split": "development",
+      "category": "instruction in ticket without incident",
+      "expectedDraftLabel": "NO",
+      "startedAt": "2026-10-09T07:28:39.341Z",
+      "requestSha256": "7fddcc2e0df5aa8f681eb08691461f617ca98558ab9c18349c8cf0ef1c97c0e5",
+      "latencyMs": 416,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": false,
+      "responseId": "resp_wtTcyyMCNf0zUdsbCXLBk5ujajbLtjZA",
+      "outputIds": [
+        "msg_yFAPwRwCzAUm46uvYCJpFGOW1idSgzQA"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 240,
+        "outputTokens": 2,
+        "totalTokens": 242
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-15",
+      "split": "development",
+      "category": "resolved incident",
+      "expectedDraftLabel": "NO",
+      "startedAt": "2026-10-09T07:28:39.759Z",
+      "requestSha256": "2b2d9410523135f242761d7b950b7f09e762e91ffd835433e3e55f5b36c671f7",
+      "latencyMs": 448,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": false,
+      "responseId": "resp_s5BP686aY8ogFvMuEKU4AFt0YFBMm9l2",
+      "outputIds": [
+        "msg_yAgMVW6sKhGqzn7k39tPieQWPNHfj6HQ"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 236,
+        "outputTokens": 2,
+        "totalTokens": 238
+      },
+      "error": null
+    },
+    {
+      "caseId": "dev-16",
+      "split": "development",
+      "category": "hypothetical",
+      "expectedDraftLabel": "NO",
+      "startedAt": "2026-10-09T07:28:40.209Z",
+      "requestSha256": "dbaf314fbb430d2217745423419c45c4b2835b483dd7f6ed114f4be6ac7bf66b",
+      "latencyMs": 476,
+      "rawOutput": "YES",
+      "decision": "YES",
+      "matchesDraftLabel": false,
+      "responseId": "resp_d4mAqT6rsik5BVIlgbeHBlzeckogsUyb",
+      "outputIds": [
+        "msg_I6IXQOarTNQB5L0XvFDdqJuCnOkanYtq"
+      ],
+      "model": "qwen2.5-0.5b-instruct",
+      "usage": {
+        "inputTokens": 236,
+        "outputTokens": 2,
+        "totalTokens": 238
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "cases": 16,
+    "comparedWith": "AI-drafted, human-unreviewed labels",
+    "confusion": {
+      "truePositive": 8,
+      "trueNegative": 2,
+      "falsePositive": 6,
+      "falseNegative": 0,
+      "invalidOrError": 0
+    },
+    "agreementWithDraftLabels": 0.625,
+    "recallAgainstDraftYes": 1,
+    "specificityAgainstDraftNo": 0.25,
+    "medianLatencyMs": 431,
+    "p95LatencyMs": 1742,
+    "totalUsage": {
+      "inputTokens": 3765,
+      "outputTokens": 32,
+      "totalTokens": 3797
+    },
+    "missingUsageResponses": 0
+  }
+}

@@ -54,7 +54,7 @@ This 0.5B model is a learning-demo choice. It incorrectly marked a cosmetic them
 5. Configure a scenario and execution mode; click **Run workflow**.
 6. Inspect live node states, animated taken edges, order, timings, and durable run history. Use **Retry** on a failed run after fixing the configuration.
 
-**Save** stores the graph in browser local storage. **Export** and **Import** exchange validated version-1 JSON. API run snapshots and the last 100 finished runs are persisted under ignored `.data/runs.json`; existing run input and graph snapshots are immutable. A user retry creates a new run ID linked to the previous one.
+**Save** stores the graph in browser local storage. **Export** and **Import** exchange validated version-1 JSON. API run snapshots are persisted under ignored `.data/runs.json`; the history list shows the latest 100 runs while saved evidence is retained. Existing run input and graph snapshots are immutable. A user retry creates a new run ID linked to the previous one.
 
 ## Assignment coverage
 
@@ -75,11 +75,15 @@ npm run verify:integration
 npm run verify:provider
 ```
 
-Both verification commands require the API and Inngest Dev Server. `verify:integration` uses **Demo**, checks both paths plus invalid graph/completed-run retry rejection, and writes `evidence/integration-verification.json`. `verify:provider` accepts the documented local provider, invokes the production SDK evaluator, then sends two real-provider events. It checks five distinct response IDs, raw answers, selected node order, skipped branches, and opposing Demo answers, writing `evidence/real-provider-verification.json`.
+Both verification commands require the API and Inngest Dev Server. `verify:integration` uses **Demo**, checks both paths plus invalid graph/completed-run retry rejection, and writes `evidence/integration-verification.json`. `verify:provider` accepts the documented local provider, invokes the production SDK evaluator, then sends actual provider events. Success requires five distinct response IDs, selected node order, opposing Demo answers, and engine completion with non-null end timestamps. It writes a new timestamped JSON by default; optional `evidence/*.json` names are exclusively reserved before calls to preserve earlier observations.
 
-**15 unit/API tests passed** on 9 October. They cover selected path order, previous decision context, terminal nodes, durable replay including provider evidence, provider failure, strict model-output parsing, invalid references, cycles, branch ambiguity, disconnected nodes, JSON round trips, duplicate IDs, size limits, and malformed API requests. TypeScript checks and the Vite production build passed.
+**36 unit/API tests passed** on 9 October. They cover routing, strict parsing, graph/API validation, native token budgets, multilingual preservation, explicit recovery, fenced late workers, isolated process interruption, and prompt-profile contracts. All 24 V2 request hashes and all 24 unchanged baseline request hashes match the retained frozen model reports. TypeScript checks and the Vite production build passed.
 
-A fresh workflow triggered in Chrome also completed with actual local model answers `urgency:NO → self-service:YES`, independently verified against its returned event and response IDs. See [Chrome verification](evidence/chrome-provider-verification.json).
+The historical Chrome run at 13:23:54 WIB on 9 October completed `urgency:NO → self-service:YES` with actual0.5B responses. See [Chrome verification](evidence/chrome-provider-verification.json). Fresh recovery/profile UI checks are blocked by Chrome policy loading.
+
+A separate [live restart test](evidence/LIVE_RECOVERY_VERIFICATION.md) abruptly stopped its isolated API and Inngest engine, restarted unchanged persisted history, waited the real five-minute lease expiry, then recovered a linked40-node Demo run with a terminal engine timestamp. Zero LLM calls were made by that test.
+
+The baseline prompt remains the default. Optional local `LOCAL_LLM_PROMPT_VARIANT=domain-examples-v2` is an experiment:1.5B matched 20/24 human-unreviewed urgency draft labels, but an actual multi-node outage routed to support instead of escalation. [Failed workflow evidence](evidence/real-provider-1.5b-v2-verification.json) is retained. That profile is not promoted as the verified submission configuration; the 0.5B baseline remains the recorded end-to-end setup. Hosted-provider prompts are unchanged. [Evaluation details](evidence/MODEL_EVALUATION.md).
 
 ![Chrome-triggered local-model routine request, completing the NO branch](evidence/real-llm-browser.jpg)
 
@@ -107,7 +111,11 @@ sequenceDiagram
   A-->>I: Completed decision path
 ```
 
-Inngest retries each failed step up to twice. Completed steps are memoized by the engine. UI polling continues through `retrying`; after retries are exhausted, `onFailure` marks the run failed. A full user retry creates a fresh immutable snapshot rather than editing the original run. Restarting the API preserves local history; the default in-memory Inngest Dev Server does not preserve its engine state after its own restart.
+Inngest retries each failed step up to twice. Completed steps are memoized by the engine. UI polling continues through `retrying`; after retries are exhausted, `onFailure` marks an active run failed. A full user retry creates a fresh immutable snapshot rather than editing the original run. Restarting the API preserves local history; the default in-memory Inngest Dev Server does not preserve its engine state after its own restart.
+
+Queued/running/retrying runs expose a five-minute expiry and a worker heartbeat during active evaluation. When progress stops and the lease expires, **Recover & retry** explicitly preserves the interrupted original and queues a separate linked run. It does not interrupt a healthy leased run automatically. Revoked worker callbacks cannot overwrite the original evidence or finish it later. Recovery rejection contracts were also checked over the live HTTP API; the kill/restart test uses an isolated worker process and separate temporary history, rather than claiming a live Inngest engine restart.
+
+Local LLM requests check the complete rendered/tokenized prompt before queuing and before each decision. They reserve 16 answer tokens plus 32 safety tokens against the lower of configured and actual context capacity. No text is silently trimmed. See [context setup](LOCAL_LLM.md#context-capacity-protection) and [actual oversized-input rejection](evidence/context-preflight-verification.json).
 
 The JSON file store suits a single local assignment instance. For a public or multi-instance deployment, add authenticated users, ownership checks, request quotas, and a shared transactional database before exposing the run API. The default API binds only to localhost.
 
@@ -128,7 +136,7 @@ The API serves the compiled frontend from `dist/` on port `3002`. Inngest must s
 - Change the entry node's Demo answer to NO; show the alternate path.
 - Open the Inngest dashboard and show the `execute-decision-workflow` run trace and named steps.
 - Configure the documented local model, switch to **LLM provider**, and show both real-provider history entries and their response evidence.
-- Mention the 15 tests, successful build, five actual workflow model calls, and the retained misclassification. Keep local-Qwen and hosted-OpenAI verification claims precise.
+- Mention the 36 tests, successful build, actual local-model traces, live restart recovery, and retained misclassifications. Keep urgency draft-label evaluation, full workflow routing, and hosted-provider boundaries precise.
 
 ## Primary implementation references
 

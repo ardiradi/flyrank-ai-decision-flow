@@ -1,0 +1,2 @@
+# Frozen fixtures and evidence hashes must survive Windows CRLF checkout settings.
+evidence/*.json text eol=lf

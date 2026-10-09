@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "frozenAtUtc": "2026-10-09T12:12:46.525446+00:00",
+  "fixtureSha256": "d7e2e2d65f3582451019d47fb78981e488462106bf0cb3d5542f287551e06a6e",
+  "model": "qwen2.5-1.5b-instruct",
+  "developmentReports": [
+    {
+      "path": "evidence/model-evaluation-1.5b-baseline-development.json",
+      "sha256": "93c0e7f5e25205c8003730b13eb6270dd5fec8aa1529576b66abc0055334ad78"
+    },
+    {
+      "path": "evidence/model-evaluation-1.5b-candidate-v2-development.json",
+      "sha256": "5d32cddef7553e0282ac9b48d92447001bd75c71691ada7401216fce85176218"
+    }
+  ],
+  "candidateSource": "Previously frozen V2 unchanged; model-evaluation-candidate-freeze.json",
+  "decisionBefore1_5bHeldOut": "Keep 1.5B baseline out of recommended configuration:9/16,7false negatives. Compare unchanged V2:13/16,3false positives and no false negatives. No new examples or labels tuned for these 1.5B predictions.",
+  "limits": "The author already saw the 0.5B held-out results and authored both splits. This model comparison is exploratory, not an independently blinded validation. Human label review pending; all mismatches retained."
+}
