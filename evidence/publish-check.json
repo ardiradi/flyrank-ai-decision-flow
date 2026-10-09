@@ -1,7 +1,15 @@
 {
-  "checkedAt": "2026-10-08T06:46:19.407Z",
-  "trackedFiles": 33,
+  "checkedAt": "2026-10-09T06:30:29.220244+00:00",
+  "trackedFiles": 41,
   "forbiddenPaths": [],
   "credentialMatches": [],
+  "binaryEvidenceReviewed": [
+    "evidence/real-llm-browser.jpg",
+    "evidence/real-llm-yes.jpg"
+  ],
+  "binaryEvidenceSHA256": {
+    "evidence/real-llm-browser.jpg": "259334cea555f2305d2b5576a005cb2899a84c7bd55746a5cb7bffb54a7d5467",
+    "evidence/real-llm-yes.jpg": "c6fd92520d2ffad3c146e282b7a936d8c42abb9d39a43d8b73d65b1d4ee22732"
+  },
   "passed": true
 }

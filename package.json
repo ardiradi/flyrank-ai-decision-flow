@@ -11,7 +11,8 @@
     "build": "tsc --noEmit && vite build",
     "start": "tsx server/index.ts",
     "test": "tsx --test tests/*.test.ts",
-    "verify:integration": "tsx scripts/verify-integration.ts"
+    "verify:integration": "tsx scripts/verify-integration.ts",
+    "verify:provider": "tsx scripts/verify-provider.ts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",

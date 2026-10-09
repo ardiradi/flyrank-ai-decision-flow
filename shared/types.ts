@@ -1,5 +1,18 @@
 export type Decision = "YES" | "NO";
 export type ExecutionMode = "demo" | "openai";
+export type ProviderKind = "local-openai-compatible" | "openai" | "openai-compatible";
+export interface ProviderResponse {
+  kind: ProviderKind;
+  model: string;
+  responseId: string;
+  outputIds: string[];
+  rawOutput: string;
+  usage?: { inputTokens: number; outputTokens: number; totalTokens: number };
+}
+export interface EvaluatedDecision {
+  decision: Decision;
+  provider: ProviderResponse;
+}
 
 export interface DecisionNode {
   id: string;
@@ -28,6 +41,7 @@ export interface ExecutionStep {
   nextNodeId: string | null;
   durationMs: number;
   completedAt: string;
+  provider?: ProviderResponse;
 }
 export type RunStatus = "queued" | "running" | "retrying" | "completed" | "failed";
 export interface WorkflowRun {

@@ -1,0 +1,181 @@
+{
+  "verifiedAt": "2026-10-09T06:23:56.429Z",
+  "method": "Root triggered Run workflow in Chrome and inspected the completed live trace",
+  "provider": "Local Qwen through official OpenAI SDK Responses API",
+  "paidApiCallsMade": false,
+  "screenshots": [
+    "real-llm-browser.jpg",
+    "real-llm-yes.jpg"
+  ],
+  "run": {
+    "id": "b11ae10d-c08a-4426-a981-7ca413c3630c",
+    "graph": {
+      "version": 1,
+      "name": "Browser verification \u2014 local LLM routine",
+      "entryNodeId": "urgency",
+      "nodes": [
+        {
+          "id": "urgency",
+          "type": "decision",
+          "position": {
+            "x": 360,
+            "y": 40
+          },
+          "data": {
+            "title": "Is this urgent?",
+            "prompt": "Does the support request describe a service outage, payment failure, or a serious blocker?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "specialist",
+          "type": "decision",
+          "position": {
+            "x": 140,
+            "y": 300
+          },
+          "data": {
+            "title": "Needs a specialist?",
+            "prompt": "Does the request require engineering expertise, rather than a standard support response?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "self-service",
+          "type": "decision",
+          "position": {
+            "x": 600,
+            "y": 300
+          },
+          "data": {
+            "title": "Can docs help?",
+            "prompt": "Can the request be resolved with a documentation link or standard how-to instructions?",
+            "demoDecision": "NO"
+          }
+        },
+        {
+          "id": "escalate",
+          "type": "decision",
+          "position": {
+            "x": 40,
+            "y": 570
+          },
+          "data": {
+            "title": "Escalation ready?",
+            "prompt": "Does the request contain enough context to escalate to the engineering team?",
+            "demoDecision": "YES"
+          }
+        },
+        {
+          "id": "support",
+          "type": "decision",
+          "position": {
+            "x": 420,
+            "y": 570
+          },
+          "data": {
+            "title": "Support can resolve?",
+            "prompt": "Can a support agent resolve this request without engineering involvement?",
+            "demoDecision": "YES"
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "urgency-yes",
+          "source": "urgency",
+          "target": "specialist",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "urgency-no",
+          "source": "urgency",
+          "target": "self-service",
+          "sourceHandle": "NO"
+        },
+        {
+          "id": "specialist-yes",
+          "source": "specialist",
+          "target": "escalate",
+          "sourceHandle": "YES"
+        },
+        {
+          "id": "specialist-no",
+          "source": "specialist",
+          "target": "support",
+          "sourceHandle": "NO"
+        },
+        {
+          "id": "self-service-no",
+          "source": "self-service",
+          "target": "support",
+          "sourceHandle": "NO"
+        }
+      ]
+    },
+    "input": "Please send the standard password-reset documentation. I can still sign in and use the service normally. There is no outage, payment failure, or blocker. This is a routine how-to question.",
+    "mode": "openai",
+    "status": "completed",
+    "createdAt": "2026-10-09T06:23:54.701Z",
+    "updatedAt": "2026-10-09T06:23:56.429Z",
+    "steps": [
+      {
+        "nodeId": "urgency",
+        "title": "Is this urgent?",
+        "decision": "NO",
+        "nextNodeId": "self-service",
+        "durationMs": 811,
+        "completedAt": "2026-10-09T06:23:55.649Z",
+        "provider": {
+          "kind": "local-openai-compatible",
+          "model": "qwen2.5-0.5b-instruct",
+          "responseId": "resp_isi7UNm2BHtlxRznRqqPkt7FcBIFqLwE",
+          "outputIds": [
+            "msg_eOTiBrvB5ZPkvAy0y2q6nHo4Oz9u4GRB"
+          ],
+          "rawOutput": "NO",
+          "usage": {
+            "inputTokens": 248,
+            "outputTokens": 2,
+            "totalTokens": 250
+          }
+        }
+      },
+      {
+        "nodeId": "self-service",
+        "title": "Can docs help?",
+        "decision": "YES",
+        "nextNodeId": null,
+        "durationMs": 754,
+        "completedAt": "2026-10-09T06:23:56.416Z",
+        "provider": {
+          "kind": "local-openai-compatible",
+          "model": "qwen2.5-0.5b-instruct",
+          "responseId": "resp_PN91ybUhThmFo9YSgsX6wcmP2kkE6xd8",
+          "outputIds": [
+            "msg_CpL5pW6iRpKrWdHdKxknJjHjqtfNBkJs"
+          ],
+          "rawOutput": "YES",
+          "usage": {
+            "inputTokens": 258,
+            "outputTokens": 2,
+            "totalTokens": 260
+          }
+        }
+      }
+    ],
+    "activeNodeId": null,
+    "attempts": {
+      "urgency": 1,
+      "self-service": 1
+    },
+    "error": null,
+    "eventId": "01M4FNA7TKSJ0Z3X3MC6885R3C"
+  },
+  "checks": [
+    "Fresh Chrome-triggered workflow completed through actual Inngest event",
+    "Local-model caption and LLM provider label visible",
+    "Strict model answers NO then YES; two of five graph nodes visited",
+    "Returned response IDs independently fetched from local API match the browser record"
+  ]
+}

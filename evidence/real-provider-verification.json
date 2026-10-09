@@ -1,0 +1,420 @@
+{
+  "verifiedAt": "2026-10-09T06:20:42.630Z",
+  "provider": "local llama.cpp through the official OpenAI SDK Responses API",
+  "model": "qwen2.5-0.5b-instruct",
+  "internalExecutionMode": "openai",
+  "paidApiCallsMade": false,
+  "syntheticInputsOnly": true,
+  "smoke": [
+    {
+      "decision": "YES",
+      "provider": {
+        "kind": "local-openai-compatible",
+        "model": "qwen2.5-0.5b-instruct",
+        "responseId": "resp_A32rwXPWEN7ADXaLSKL2TV9z5pztggKD",
+        "outputIds": [
+          "msg_tod0V9V86i7urAh5ZeznQtdPsfnlbQJC"
+        ],
+        "rawOutput": "YES",
+        "usage": {
+          "inputTokens": 274,
+          "outputTokens": 2,
+          "totalTokens": 276
+        }
+      }
+    },
+    {
+      "decision": "NO",
+      "provider": {
+        "kind": "local-openai-compatible",
+        "model": "qwen2.5-0.5b-instruct",
+        "responseId": "resp_qle63VHoHFelxKEzLSWyRpqPD3ws6lem",
+        "outputIds": [
+          "msg_P7PjvYFeRQeNkcPQLt86bbbjniEMl9CY"
+        ],
+        "rawOutput": "NO",
+        "usage": {
+          "inputTokens": 248,
+          "outputTokens": 2,
+          "totalTokens": 250
+        }
+      }
+    }
+  ],
+  "runs": [
+    {
+      "id": "56bcee31-f52d-46b6-8a8f-85f7536f2d0b",
+      "graph": {
+        "version": 1,
+        "name": "Real local LLM: outage (Demo answers set to NO)",
+        "entryNodeId": "urgency",
+        "nodes": [
+          {
+            "id": "urgency",
+            "type": "decision",
+            "position": {
+              "x": 360,
+              "y": 40
+            },
+            "data": {
+              "title": "Is this urgent?",
+              "prompt": "Does the support request describe a service outage, payment failure, or a serious blocker?",
+              "demoDecision": "NO"
+            }
+          },
+          {
+            "id": "specialist",
+            "type": "decision",
+            "position": {
+              "x": 140,
+              "y": 300
+            },
+            "data": {
+              "title": "Needs a specialist?",
+              "prompt": "Does the request require engineering expertise, rather than a standard support response?",
+              "demoDecision": "NO"
+            }
+          },
+          {
+            "id": "self-service",
+            "type": "decision",
+            "position": {
+              "x": 600,
+              "y": 300
+            },
+            "data": {
+              "title": "Can docs help?",
+              "prompt": "Can the request be resolved with a documentation link or standard how-to instructions?",
+              "demoDecision": "NO"
+            }
+          },
+          {
+            "id": "escalate",
+            "type": "decision",
+            "position": {
+              "x": 40,
+              "y": 570
+            },
+            "data": {
+              "title": "Escalation ready?",
+              "prompt": "Does the request contain enough context to escalate to the engineering team?",
+              "demoDecision": "NO"
+            }
+          },
+          {
+            "id": "support",
+            "type": "decision",
+            "position": {
+              "x": 420,
+              "y": 570
+            },
+            "data": {
+              "title": "Support can resolve?",
+              "prompt": "Can a support agent resolve this request without engineering involvement?",
+              "demoDecision": "NO"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "urgency-yes",
+            "source": "urgency",
+            "target": "specialist",
+            "sourceHandle": "YES"
+          },
+          {
+            "id": "urgency-no",
+            "source": "urgency",
+            "target": "self-service",
+            "sourceHandle": "NO"
+          },
+          {
+            "id": "specialist-yes",
+            "source": "specialist",
+            "target": "escalate",
+            "sourceHandle": "YES"
+          },
+          {
+            "id": "specialist-no",
+            "source": "specialist",
+            "target": "support",
+            "sourceHandle": "NO"
+          },
+          {
+            "id": "self-service-no",
+            "source": "self-service",
+            "target": "support",
+            "sourceHandle": "NO"
+          }
+        ]
+      },
+      "input": "The payment service is down for all customers. Every checkout returns HTTP 500. Engineering must investigate the payment API regression. Reproduction: open checkout, pay with any test card, and observe HTTP 500 since 09:30 UTC; request ID test-outage-001.",
+      "mode": "openai",
+      "status": "completed",
+      "createdAt": "2026-10-09T06:20:44.321Z",
+      "updatedAt": "2026-10-09T06:20:47.398Z",
+      "steps": [
+        {
+          "nodeId": "urgency",
+          "title": "Is this urgent?",
+          "decision": "YES",
+          "nextNodeId": "specialist",
+          "durationMs": 723,
+          "completedAt": "2026-10-09T06:20:45.405Z",
+          "provider": {
+            "kind": "local-openai-compatible",
+            "model": "qwen2.5-0.5b-instruct",
+            "responseId": "resp_IAtc5WBIGFu1KCPGXXsCwnCBt0xtV4qs",
+            "outputIds": [
+              "msg_CMDh7dYbpzrdiqULJaaJHTPuxXyUrf1b"
+            ],
+            "rawOutput": "YES",
+            "usage": {
+              "inputTokens": 274,
+              "outputTokens": 2,
+              "totalTokens": 276
+            }
+          }
+        },
+        {
+          "nodeId": "specialist",
+          "title": "Needs a specialist?",
+          "decision": "YES",
+          "nextNodeId": "escalate",
+          "durationMs": 906,
+          "completedAt": "2026-10-09T06:20:46.338Z",
+          "provider": {
+            "kind": "local-openai-compatible",
+            "model": "qwen2.5-0.5b-instruct",
+            "responseId": "resp_BffdyxtbNoTIXRx1PrbkIZpuXTKmuOmx",
+            "outputIds": [
+              "msg_Xdb6ka2kGCgROiuNhe51AGKGPVGLMJ5U"
+            ],
+            "rawOutput": "YES",
+            "usage": {
+              "inputTokens": 283,
+              "outputTokens": 2,
+              "totalTokens": 285
+            }
+          }
+        },
+        {
+          "nodeId": "escalate",
+          "title": "Escalation ready?",
+          "decision": "YES",
+          "nextNodeId": null,
+          "durationMs": 1026,
+          "completedAt": "2026-10-09T06:20:47.381Z",
+          "provider": {
+            "kind": "local-openai-compatible",
+            "model": "qwen2.5-0.5b-instruct",
+            "responseId": "resp_ne6EwxD3g2vHLuBEaE1Aus08tr5neZmL",
+            "outputIds": [
+              "msg_oMswRKm4ZNZkhV8EdnpItR21ptQmhwBD"
+            ],
+            "rawOutput": "YES",
+            "usage": {
+              "inputTokens": 293,
+              "outputTokens": 2,
+              "totalTokens": 295
+            }
+          }
+        }
+      ],
+      "activeNodeId": null,
+      "attempts": {
+        "urgency": 1,
+        "specialist": 1,
+        "escalate": 1
+      },
+      "error": null,
+      "eventId": "01M4FN4DYKCEC5X1KAX84989H2"
+    },
+    {
+      "id": "764d89ae-7b4c-4ee7-ac3b-7102df83695e",
+      "graph": {
+        "version": 1,
+        "name": "Real local LLM: routine (opposing Demo answers)",
+        "entryNodeId": "urgency",
+        "nodes": [
+          {
+            "id": "urgency",
+            "type": "decision",
+            "position": {
+              "x": 360,
+              "y": 40
+            },
+            "data": {
+              "title": "Is this urgent?",
+              "prompt": "Does the support request describe a service outage, payment failure, or a serious blocker?",
+              "demoDecision": "YES"
+            }
+          },
+          {
+            "id": "specialist",
+            "type": "decision",
+            "position": {
+              "x": 140,
+              "y": 300
+            },
+            "data": {
+              "title": "Needs a specialist?",
+              "prompt": "Does the request require engineering expertise, rather than a standard support response?",
+              "demoDecision": "YES"
+            }
+          },
+          {
+            "id": "self-service",
+            "type": "decision",
+            "position": {
+              "x": 600,
+              "y": 300
+            },
+            "data": {
+              "title": "Can docs help?",
+              "prompt": "Can the request be resolved with a documentation link or standard how-to instructions?",
+              "demoDecision": "NO"
+            }
+          },
+          {
+            "id": "escalate",
+            "type": "decision",
+            "position": {
+              "x": 40,
+              "y": 570
+            },
+            "data": {
+              "title": "Escalation ready?",
+              "prompt": "Does the request contain enough context to escalate to the engineering team?",
+              "demoDecision": "YES"
+            }
+          },
+          {
+            "id": "support",
+            "type": "decision",
+            "position": {
+              "x": 420,
+              "y": 570
+            },
+            "data": {
+              "title": "Support can resolve?",
+              "prompt": "Can a support agent resolve this request without engineering involvement?",
+              "demoDecision": "YES"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "urgency-yes",
+            "source": "urgency",
+            "target": "specialist",
+            "sourceHandle": "YES"
+          },
+          {
+            "id": "urgency-no",
+            "source": "urgency",
+            "target": "self-service",
+            "sourceHandle": "NO"
+          },
+          {
+            "id": "specialist-yes",
+            "source": "specialist",
+            "target": "escalate",
+            "sourceHandle": "YES"
+          },
+          {
+            "id": "specialist-no",
+            "source": "specialist",
+            "target": "support",
+            "sourceHandle": "NO"
+          },
+          {
+            "id": "self-service-no",
+            "source": "self-service",
+            "target": "support",
+            "sourceHandle": "NO"
+          }
+        ]
+      },
+      "input": "Please send the standard password-reset documentation. I can still sign in and use the service normally. There is no outage, payment failure, or blocker. This is a routine how-to question.",
+      "mode": "openai",
+      "status": "completed",
+      "createdAt": "2026-10-09T06:20:47.524Z",
+      "updatedAt": "2026-10-09T06:20:49.411Z",
+      "steps": [
+        {
+          "nodeId": "urgency",
+          "title": "Is this urgent?",
+          "decision": "NO",
+          "nextNodeId": "self-service",
+          "durationMs": 663,
+          "completedAt": "2026-10-09T06:20:48.603Z",
+          "provider": {
+            "kind": "local-openai-compatible",
+            "model": "qwen2.5-0.5b-instruct",
+            "responseId": "resp_SNisrsA38X71c5C3iE5iI9etrbw5OBaT",
+            "outputIds": [
+              "msg_lYXfErbH4x0UajPuDpvIczUZmbXP4ttb"
+            ],
+            "rawOutput": "NO",
+            "usage": {
+              "inputTokens": 248,
+              "outputTokens": 2,
+              "totalTokens": 250
+            }
+          }
+        },
+        {
+          "nodeId": "self-service",
+          "title": "Can docs help?",
+          "decision": "YES",
+          "nextNodeId": null,
+          "durationMs": 776,
+          "completedAt": "2026-10-09T06:20:49.397Z",
+          "provider": {
+            "kind": "local-openai-compatible",
+            "model": "qwen2.5-0.5b-instruct",
+            "responseId": "resp_4Eqls35PTgSjFXgjqvj8oKA2DRIcJZPU",
+            "outputIds": [
+              "msg_ZdHCXgjM6902WCzViZRp4CGRF8h8QKpH"
+            ],
+            "rawOutput": "YES",
+            "usage": {
+              "inputTokens": 258,
+              "outputTokens": 2,
+              "totalTokens": 260
+            }
+          }
+        }
+      ],
+      "activeNodeId": null,
+      "attempts": {
+        "urgency": 1,
+        "self-service": 1
+      },
+      "error": null,
+      "eventId": "01M4FN4H18V6MFTF44XCH7X0K4"
+    }
+  ],
+  "passed": true,
+  "limits": "Two selected scenarios verify execution and routing, not general model accuracy. See local-model-limitations.json for a genuine misclassification.",
+  "status": {
+    "ok": true,
+    "openaiConfigured": true,
+    "model": "qwen2.5-0.5b-instruct",
+    "providerKind": "local-openai-compatible",
+    "inngestReady": true,
+    "demoNotice": "Demo decisions use each node's configured YES/NO answer; no LLM is called."
+  },
+  "completedWorkflowLlmCalls": 5,
+  "productionSdkSmokeCalls": 2,
+  "actualLlmCallsMade": true,
+  "checks": [
+    "Production decide() uses actual SDK Responses calls, returning strict YES and NO",
+    "Two actual Inngest events execute five visited nodes",
+    "Every visited node retains response ID, output ID, model, raw answer, and usage",
+    "Opposing Demo answers do not control real-provider results",
+    "Selected paths match urgency → specialist → escalate and urgency → self-service",
+    "Unused branches skipped; no hosted provider is allowed by this verifier"
+  ]
+}

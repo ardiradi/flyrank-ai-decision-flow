@@ -84,6 +84,11 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px
 .trace-end { color: #229972; }
 .trace-meta { color: #adb4bf; font-size: 9px; margin-top: 19px; }
 .trace-meta > span { padding: 0 5px; }
+.provider-evidence { margin-top: 14px; color: #65738a; font-size: 10px; }
+.provider-evidence summary { cursor: pointer; }
+.provider-evidence > div { margin-top: 8px; }
+.provider-evidence strong, .provider-evidence code { display: block; }
+.provider-evidence code { font-size: 9px; overflow-wrap: anywhere; margin-top: 3px; }
 .trace-error { color: #c05c37; font-size: 10px; display: flex; gap: 6px; align-items: center; margin-top: 10px; }
 .history-body { overflow: auto; padding: 6px 23px; }
 .history-row { width: 100%; border: 0; border-bottom: 1px solid #f0f2f5; display: flex; align-items: center; gap: 11px; padding: 9px 0; text-align: left; background: white; }

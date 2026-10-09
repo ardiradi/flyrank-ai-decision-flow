@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { exampleGraph, parseGraph, validateGraph } from "../shared/graph";
 import { executeGraph, parseDecision } from "../server/execute";
-import type { Decision, WorkflowGraph } from "../shared/types";
+import type { Decision, EvaluatedDecision, WorkflowGraph } from "../shared/types";
 
 const directStep = async <T>(_id: string, work: () => Promise<T>) => work();
 const copy = () => structuredClone(exampleGraph);
@@ -42,6 +42,34 @@ test("provider failure stops the path before a downstream node", async () => {
   const called: string[] = [];
   await assert.rejects(executeGraph(copy(), "outage", async (node) => { called.push(node.id); if (node.id === "specialist") throw new Error("provider unavailable"); return "YES"; }, directStep), /provider unavailable/);
   assert.deepEqual(called, ["urgency", "specialist"]);
+});
+
+test("real-provider response evidence survives durable replay without extra model calls", async () => {
+  const cache = new Map<string, unknown>();
+  let calls = 0;
+  const cachedStep = async <T>(id: string, work: () => Promise<T>): Promise<T> => {
+    if (!cache.has(id)) cache.set(id, await work());
+    return cache.get(id) as T;
+  };
+  const evaluate = async (): Promise<EvaluatedDecision> => {
+    calls++;
+    return { decision: "YES", provider: { kind: "local-openai-compatible", model: "test-model", responseId: `response-${calls}`, outputIds: [`output-${calls}`], rawOutput: " YES\n" } };
+  };
+  const first = await executeGraph(copy(), "outage", evaluate, cachedStep);
+  const replay = await executeGraph(copy(), "outage", evaluate, cachedStep);
+  assert.equal(calls, 3);
+  assert.deepEqual(replay, first);
+  assert.deepEqual(first.map((step) => step.provider?.responseId), ["response-1", "response-2", "response-3"]);
+  assert.equal(first[0].provider?.rawOutput, " YES\n");
+});
+
+test("invalid answers in a provider result still stop before a branch", async () => {
+  const visited: string[] = [];
+  await assert.rejects(executeGraph(copy(), "outage", async (node) => {
+    visited.push(node.id);
+    return { decision: "YES because urgent" as Decision, provider: { kind: "local-openai-compatible", model: "test-model", responseId: "invalid-response", outputIds: [], rawOutput: "YES because urgent" } };
+  }, directStep), /exactly YES or NO/);
+  assert.deepEqual(visited, ["urgency"]);
 });
 test("invalid model output never selects a branch", async () => {
   const visited: string[] = [];

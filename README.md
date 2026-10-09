@@ -8,11 +8,11 @@ Design an acyclic graph of AI questions. Give every decision an optional YES and
 
 ## Run locally
 
-Requires Node.js 22.12+ (tested with Node.js 24.14.1), npm, and two terminals.
+Requires Node.js 22.12+ (tested with Node.js 24.14.1), npm, and two terminals for Demo. Free local model inference uses an additional model-server terminal; follow [LOCAL_LLM.md](LOCAL_LLM.md).
 
 ```powershell
 npm install
-Copy-Item .env.example .env
+if (-not (Test-Path -LiteralPath .env)) { Copy-Item -LiteralPath .env.example -Destination .env }
 npm run dev
 ```
 
@@ -30,16 +30,20 @@ Inngest may allocate its separate connect-gateway service to port `8290`; the da
 
 **Demo is an explicit simulation, not an LLM result.** Each node's configured `Demo answer` determines YES or NO. The graph still runs through actual Inngest events and durable steps. This lets you verify both branches without an API key or paid API usage.
 
-To use real AI, add a valid key in the server-only `.env`:
+For free real inference, follow the [pinned local Qwen setup](LOCAL_LLM.md). It uses the official OpenAI SDK with a localhost-compatible Responses endpoint and an ignored nonsecret placeholder key.
+
+For optional hosted OpenAI inference, add a valid key in the server-only `.env`:
 
 ```dotenv
 OPENAI_API_KEY=your_api_key
 OPENAI_MODEL=gpt-4.1-mini
 ```
 
-Restart the API, choose **OpenAI**, and run a scenario. The key never enters frontend code or workflow exports. Every visited node sends its prompt, scenario, and previous YES/NO results to the Responses API with `store: false`. The system instructions require exactly `YES` or `NO`; the server rejects other output and never guesses a branch. The model is configurable in case account access differs.
+Restart the API, choose **LLM provider**, and check the displayed model/provider. The key never enters frontend code or workflow exports. Every visited node sends its prompt, scenario, and previous YES/NO results to the Responses API with `store: false`. Two balanced generic examples clarify the evaluation format; local inference uses `temperature: 0`. The server accepts exactly `YES` or `NO` after whitespace trimming and fails on other output. Durable steps retain raw answers, model, response/output IDs, and token usage; expand **Model response evidence** to inspect them.
 
-No live OpenAI call was made during the initial verification because a key was unavailable. Local evidence records `openaiCallsMade: false`.
+On **9 October 2026**, actual local Qwen inference passed two production SDK smoke calls and two Inngest workflow events containing five distinct visited-node model calls. See [real-provider evidence](evidence/real-provider-verification.json). The workflow Demo answers intentionally oppose the model results, confirming that real execution uses the LLM. Hosted OpenAI has not been exercised. The original Demo evidence remains separate and records `openaiCallsMade: false`.
+
+This 0.5B model is a learning-demo choice. It incorrectly marked a cosmetic theme-change request urgent in a separate probe; [all five probes, including the failure](evidence/local-model-limitations.json), are retained. The selected workflow scenarios verify execution and routing, rather than general classification accuracy.
 
 ## Editor workflow
 
@@ -67,11 +71,19 @@ No live OpenAI call was made during the initial verification because a key was u
 npm test
 npm run build
 npm run verify:integration
+# With the documented local model and local-provider API configured:
+npm run verify:provider
 ```
 
-The integration command requires the API and Inngest Dev Server to be running. It sends actual events, waits for completion, checks the YES path (`urgency → specialist → escalate`) and NO path (`urgency → self-service`), and writes a reproducible evidence file to `evidence/integration-verification.json`. It also verifies rejection of a cycle and of retries on completed runs.
+Both verification commands require the API and Inngest Dev Server. `verify:integration` uses **Demo**, checks both paths plus invalid graph/completed-run retry rejection, and writes `evidence/integration-verification.json`. `verify:provider` accepts the documented local provider, invokes the production SDK evaluator, then sends two real-provider events. It checks five distinct response IDs, raw answers, selected node order, skipped branches, and opposing Demo answers, writing `evidence/real-provider-verification.json`.
 
-Unit/API tests cover selected path order, previous decision context, terminal nodes, durable replay, provider failure, strict model-output parsing, invalid references, cycles, branch ambiguity, disconnected nodes, JSON round trips, duplicate IDs, size limits, and malformed API requests.
+**15 unit/API tests passed** on 9 October. They cover selected path order, previous decision context, terminal nodes, durable replay including provider evidence, provider failure, strict model-output parsing, invalid references, cycles, branch ambiguity, disconnected nodes, JSON round trips, duplicate IDs, size limits, and malformed API requests. TypeScript checks and the Vite production build passed.
+
+A fresh workflow triggered in Chrome also completed with actual local model answers `urgency:NO → self-service:YES`, independently verified against its returned event and response IDs. See [Chrome verification](evidence/chrome-provider-verification.json).
+
+![Chrome-triggered local-model routine request, completing the NO branch](evidence/real-llm-browser.jpg)
+
+![Actual local-model outage run, completing the YES branch](evidence/real-llm-yes.jpg)
 
 ## Architecture and recovery
 
@@ -80,7 +92,7 @@ sequenceDiagram
   participant U as React Flow editor
   participant A as Express API
   participant I as Inngest
-  participant O as OpenAI or Demo
+  participant O as Configured LLM or Demo
   U->>A: POST graph snapshot + scenario + mode
   A->>A: Validate and persist queued run
   A->>I: workflow/run.requested {runId}
@@ -115,8 +127,8 @@ The API serves the compiled frontend from `dist/` on port `3002`. Inngest must s
 - Run the example in Demo; show its YES path and skipped nodes.
 - Change the entry node's Demo answer to NO; show the alternate path.
 - Open the Inngest dashboard and show the `execute-decision-workflow` run trace and named steps.
-- If supplying a live AI demo, configure a key and explicitly switch to OpenAI. Label Demo recordings accurately.
-- Mention local test/build and integration evidence; do not claim unverified OpenAI success.
+- Configure the documented local model, switch to **LLM provider**, and show both real-provider history entries and their response evidence.
+- Mention the 15 tests, successful build, five actual workflow model calls, and the retained misclassification. Keep local-Qwen and hosted-OpenAI verification claims precise.
 
 ## Primary implementation references
 

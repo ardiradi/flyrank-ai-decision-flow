@@ -35,7 +35,7 @@ export function createApp() {
     next();
   });
   app.get("/api/status", async (_req, res) => {
-    res.json({ ok: true, openaiConfigured: config.openaiConfigured, model: config.model, inngestReady: await isInngestReady(), demoNotice: "Demo decisions use each node's configured YES/NO answer; no LLM is called." });
+    res.json({ ok: true, openaiConfigured: config.openaiConfigured, model: config.model, providerKind: config.providerKind, inngestReady: await isInngestReady(), demoNotice: "Demo decisions use each node's configured YES/NO answer; no LLM is called." });
   });
   app.get("/api/runs", (_req, res) => res.json(runStore.list()));
   app.get("/api/runs/:id", (req, res) => {
@@ -48,7 +48,7 @@ export function createApp() {
     if (!result.success) { res.status(400).json({ error: "Provide a graph, 1–12,000 characters of input, and a valid execution mode." }); return; }
     const validation = validateGraph(result.data.graph);
     if (!validation.graph) { res.status(400).json({ error: validation.errors.join(" ") }); return; }
-    if (result.data.mode === "openai" && !config.openaiConfigured) { res.status(400).json({ error: "OpenAI mode requires a server-side OPENAI_API_KEY. Use Demo to test the workflow." }); return; }
+    if (result.data.mode === "openai" && !config.openaiConfigured) { res.status(400).json({ error: "Configure a server-side LLM provider first, or use Demo to test the workflow." }); return; }
     if (!await isInngestReady()) { res.status(503).json({ error: "Start the Inngest Dev Server with npm run dev:inngest, then try again." }); return; }
     try { res.status(202).json(await queueRun(validation.graph, result.data.input, result.data.mode)); }
     catch (error) { res.status(503).json({ error: (error as Error).message }); }
